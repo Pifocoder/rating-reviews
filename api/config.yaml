@@ -1,0 +1,2 @@
+addr: ":8080"
+model_addr: "http://models:80"

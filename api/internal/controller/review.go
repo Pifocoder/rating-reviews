@@ -24,24 +24,21 @@ func (h *AnalyzeHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if len(req.Text) < 5 {
-		http.Error(w, "text field is required", http.StatusBadRequest)
+	if len(req.Text) == 0 {
+		http.Error(w, "texts field is required", http.StatusBadRequest)
 		return
 	}
 
-	categories, err := (*h.Reviewer).Analyze(req.Text)
+	categories, err := (*h.Reviewer).Analyze(r.Context(), req.Text)
 	if err != nil {
 		http.Error(w, "failed to analyze comment", http.StatusInternalServerError)
 		return
 	}
 
 	resp := api.CategoriesResponse{
-		Categories: entity.Categories{
-			Categories: make([]entity.Category, len(categories.Categories)),
+		Keywords: entity.Keywords{
+			Keywords: categories.Keywords,
 		},
-	}
-	for i, c := range categories.Categories {
-		resp.Categories.Categories[i] = c
 	}
 
 	w.Header().Set("Content-Type", "application/json")

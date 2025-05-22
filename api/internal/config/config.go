@@ -9,7 +9,8 @@ import (
 )
 
 type Config struct {
-	Addr string `yaml:"addr" validate:"required"`
+	Addr      string `yaml:"addr" validate:"required"`
+	ModelAddr string `yaml:"model_addr" validate:"required"`
 }
 
 func NewConfig() *Config {

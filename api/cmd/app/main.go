@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"log"
+	"rating-reviews/cmd"
 	"rating-reviews/internal/config"
 )
 

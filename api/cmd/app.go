@@ -26,7 +26,9 @@ func (*App) Run(cfg config.Config) {
 		return
 	}
 
-	analyzer := service.NewAnalyzer(logger.Sugar())
+	analyzer := service.NewAnalyzer(logger.Sugar(), service.Config{
+		BaseURL: cfg.ModelAddr,
+	})
 	handler := &controller.AnalyzeHandler{Reviewer: &analyzer}
 	server.RegisterHandler("/analyze", handler)
 
