@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  models:
+    build: ./models
+    ports:
+      - "8000:80"
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  rating-reviews-app:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./api/config.yaml:/etc/rating-reviews/config.yaml:ro
+    restart: unless-stopped
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
