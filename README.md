@@ -21,6 +21,7 @@ curl -X POST http://localhost:8080/analyze \
     ]
   }'
 ```
+
 ``` 
 {"keywords":[{"name":"рыба","score":4.6},{"name":"мясо","score":4.7},{"name":"атмосфера","score":5},{"name":"меню","score":4},{"name":"качество","score":4.5}]}
 ``` 
